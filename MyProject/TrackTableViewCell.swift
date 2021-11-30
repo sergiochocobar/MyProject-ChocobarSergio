@@ -1,0 +1,112 @@
+//
+//  TrackTableViewCell.swift
+//  MyProject
+//
+//  Created by Sergio Chocobar on 08/11/2021.
+//
+
+import UIKit
+
+class TrackTableViewCell: UITableViewCell {
+    
+    //Postwork 4
+    //usamos el struct de los modelos y marcamos las PROPERTYS con signo de pregunta para sacarle el error de no inicializacion
+    //Estas dos propiedades todavia no la estamos usando     
+    var track: Track?
+    var parent: ButtonOnCellDelegate?
+    
+    //PostWork Sesion 03
+    var icono: UIImageView = {
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        imgView.image = UIImage(named: "nota")
+        imgView.backgroundColor = .white
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
+    }()
+    
+    var titulo: UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .black
+        lbl.text = "título de la canción"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    var artista: UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .lightGray
+        lbl.text = "artista"
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    var botonPlay: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named:"play"), for: .normal)
+        btn.backgroundColor = .white
+        btn.layer.cornerRadius = 25
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    //---------------------------------------------------------------------------//
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview(icono)
+        NSLayoutConstraint.activate([
+            icono.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            icono.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            icono.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            icono.widthAnchor.constraint(equalTo: icono.heightAnchor)
+        ])
+        addSubview(botonPlay)
+        NSLayoutConstraint.activate([
+            botonPlay.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            botonPlay.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+            botonPlay.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            botonPlay.widthAnchor.constraint(equalTo: botonPlay.heightAnchor)
+        ])
+        
+        addSubview(titulo)
+        NSLayoutConstraint.activate([
+            titulo.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            titulo.heightAnchor.constraint(equalToConstant: 35),
+            titulo.leadingAnchor.constraint(equalTo: icono.trailingAnchor, constant: 5),
+            titulo.trailingAnchor.constraint(equalTo: botonPlay.leadingAnchor, constant: -5)
+        ])
+        addSubview(artista)
+        NSLayoutConstraint.activate([
+            artista.heightAnchor.constraint(equalToConstant: 35),
+            artista.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            artista.leadingAnchor.constraint(equalTo: icono.trailingAnchor, constant: 5),
+            artista.trailingAnchor.constraint(equalTo: botonPlay.leadingAnchor, constant: -5)
+        ])
+        
+        contentView.isUserInteractionEnabled = false
+        botonPlay.addTarget(self, action: #selector(callButton), for:.touchUpInside)
+    }
+    
+    @objc func callButton() {
+            guard let parent = parent else { return }
+            parent.buttonTouchedOnCell(aCell: self)
+       }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
