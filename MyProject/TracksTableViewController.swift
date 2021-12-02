@@ -25,6 +25,25 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate{
         self.tableView.register(TrackTableViewCell.self, forCellReuseIdentifier: "trackCell")
         self.tableView.rowHeight = 80;
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let callback:([Track]?, Error?) -> () = { canciones, error in
+            if error != nil{
+                print("Ha ocurrido un error")
+            }else{
+                misTracks = canciones ?? []
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        let api = APIManager()
+        api.getMusic(completion: callback)
+    }
 
     // MARK: - Table view data source
 

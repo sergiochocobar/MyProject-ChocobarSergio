@@ -6,20 +6,31 @@
 //
 
 import UIKit
-import SwiftySound
+import AudioPlayer
 
 class AudioPlayerViewController: UIViewController {
     
     var isPlaying = true
-    var song: Sound?
+    var song: AudioPlayer?
+    
+    var slider = UISlider() //Variable global del slider
+    var timer = Timer()
     
     
     override func viewDidLoad() {
         /*---------------------------------*/
         guard let url = Bundle.main.url(forResource: "cancion-ukelele", withExtension: ".mp3") else { return }
-        song = Sound(url: url)
-        Sound.enabled = true
-        song?.play()
+        
+        do {
+            song = try AudioPlayer(contentsOf: url)
+            
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+            
+            song?.play()
+        }
+        catch {
+            print ("ocurrió un error \(error.localizedDescription)")
+        }
         /*---------------------------------*/
         super.viewDidLoad()
         //Label
@@ -54,11 +65,13 @@ class AudioPlayerViewController: UIViewController {
         b2.addTarget(self, action: #selector(stopAction), for: .touchUpInside)
         
         //Slider Reproduccion
-        let s1 = UISlider()
-        s1.autoresizingMask = .flexibleWidth
-        s1.translatesAutoresizingMaskIntoConstraints=true
-        s1.frame=CGRect(x: 20, y:150, width: self.view.frame.width-40, height: 50)
-        self.view.addSubview(s1)
+        slider.autoresizingMask = .flexibleWidth
+        slider.translatesAutoresizingMaskIntoConstraints=true
+        slider.frame=CGRect(x: 20, y:150, width: self.view.frame.width-40, height: 50)
+        guard let duration = song?.duration else {return}
+        slider.maximumValue = Float(duration)
+        self.view.addSubview(slider)
+        slider.addTarget(self, action: #selector(timeSound), for: .touchUpInside)
         
         
         //Label Volumen
@@ -77,6 +90,7 @@ class AudioPlayerViewController: UIViewController {
         s2.autoresizingMask = .flexibleWidth
         s2.translatesAutoresizingMaskIntoConstraints=true
         s2.frame=CGRect(x: 20, y:250, width: self.view.frame.width-200, height: 50)
+        s2.value = 1.0
         self.view.addSubview(s2)
         /**--------**/
         s2.addTarget(self, action: #selector(slider2Touch(_ :)), for: .valueChanged)
@@ -118,5 +132,25 @@ class AudioPlayerViewController: UIViewController {
             song?.play()
             isPlaying = true
         }
+    }
+    
+    @objc func update(){
+        guard let tiempo = song?.currentTime else {return}
+        slider.value = Float(tiempo)
+    }
+    
+    @objc func timeSound(sender: UISlider){
+        if (isPlaying) {
+            song?.stop()
+            song?.currentTime = TimeInterval(sender.value)
+            song?.play()
+        }else{
+            song?.stop()
+            song?.currentTime = TimeInterval(sender.value)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        song?.stop()
     }
 }

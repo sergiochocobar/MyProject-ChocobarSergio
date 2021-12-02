@@ -41,13 +41,25 @@ class TrackTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    var botonPlay: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named:"play"), for: .normal)
+    var botonPlay: PlayButton = {
+//        let btn = UIButton()
+//        btn.setImage(UIImage(named:"play"), for: .normal)
+//        btn.backgroundColor = .white
+//        btn.layer.cornerRadius = 25
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//        return btn
+        
+        
+        
+        let btn = PlayButton()
+        btn.icon = UIImage(named: "play")
+        btn.secondIcon = UIImage(named: "pause")
+        btn.performTwoStateSelection()
         btn.backgroundColor = .white
         btn.layer.cornerRadius = 25
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
+
     }()
     
     //---------------------------------------------------------------------------//
@@ -97,14 +109,23 @@ class TrackTableViewCell: UITableViewCell {
         ])
         
         contentView.isUserInteractionEnabled = false
-        botonPlay.addTarget(self, action: #selector(callButton), for:.touchUpInside)
+//        botonPlay.addTarget(self, action: #selector(callButton), for:.touchUpInside)
+        botonPlay.addTarget(self, action: #selector(self.botonPlayTouch(_ :)), for:.touchUpInside)
+
     }
     
-    @objc func callButton() {
-            guard let parent = parent else { return }
-            parent.buttonTouchedOnCell(aCell: self)
+//    @objc func callButton() {
+//            guard let parent = parent else { return }
+//            parent.buttonTouchedOnCell(aCell: self)
+//       }
+//
+    @objc func botonPlayTouch(_ sender:UIButton!) {
+       botonPlay.performTwoStateSelection()
+       if parent != nil {
+           parent?.buttonTouchedOnCell(aCell: self)
        }
-    
+   }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
