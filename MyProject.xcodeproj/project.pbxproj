@@ -26,6 +26,12 @@
 		254167BD2756D49100460ECB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167BC2756D49100460ECB /* APIManager.swift */; };
 		254167C0275826AA00460ECB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254167BF275826AA00460ECB /* SystemConfiguration.framework */; };
 		254167C2275888E600460ECB /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167C1275888E600460ECB /* PlayButton.swift */; };
+		254167C42758C89300460ECB /* PlayListDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167C32758C89300460ECB /* PlayListDetailController.swift */; };
+		254167C62758D2E700460ECB /* TracksPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167C52758D2E700460ECB /* TracksPickerView.swift */; };
+		254167C82758E15200460ECB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167C72758E15200460ECB /* UIView+Extension.swift */; };
+		254167CC2758E41900460ECB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254167CB2758E41900460ECB /* UIButton+Extension.swift */; };
+		257C60F72767D7660023CE8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257C60F62767D7660023CE8A /* Extensions.swift */; };
+		257C60FC27685F4E0023CE8A /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257C60FB27685F4E0023CE8A /* DownloadManager.swift */; };
 		2581DF18272C267B004D7451 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581DF17272C267B004D7451 /* WelcomeViewController.swift */; };
 		25CF58362735690F00CEE0A5 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF58352735690F00CEE0A5 /* AudioPlayerViewController.swift */; };
 		25DA316D2730F0F800FA3545 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DA316C2730F0F800FA3545 /* Model.swift */; };
@@ -75,6 +81,12 @@
 		254167BC2756D49100460ECB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		254167BF275826AA00460ECB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		254167C1275888E600460ECB /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		254167C32758C89300460ECB /* PlayListDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListDetailController.swift; sourceTree = "<group>"; };
+		254167C52758D2E700460ECB /* TracksPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksPickerView.swift; sourceTree = "<group>"; };
+		254167C72758E15200460ECB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		254167CB2758E41900460ECB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		257C60F62767D7660023CE8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		257C60FB27685F4E0023CE8A /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		2581DF17272C267B004D7451 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		25CF58352735690F00CEE0A5 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		25DA316C2730F0F800FA3545 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -155,6 +167,8 @@
 				2513B34E273A09E800445F08 /* ButtonOnCellDelegate.swift */,
 				2509DD502744DB1B00CB875C /* MyProject-Bridging-Header.h */,
 				254167C1275888E600460ECB /* PlayButton.swift */,
+				254167C32758C89300460ECB /* PlayListDetailController.swift */,
+				254167C52758D2E700460ECB /* TracksPickerView.swift */,
 			);
 			path = MyProject;
 			sourceTree = "<group>";
@@ -180,6 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				254167BC2756D49100460ECB /* APIManager.swift */,
+				254167C72758E15200460ECB /* UIView+Extension.swift */,
+				254167CB2758E41900460ECB /* UIButton+Extension.swift */,
+				257C60F62767D7660023CE8A /* Extensions.swift */,
+				257C60FB27685F4E0023CE8A /* DownloadManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -334,11 +352,16 @@
 			files = (
 				25DA3171273102BE00FA3545 /* LoginViewController.swift in Sources */,
 				254167C2275888E600460ECB /* PlayButton.swift in Sources */,
+				254167C62758D2E700460ECB /* TracksPickerView.swift in Sources */,
 				2509DD522744DB1C00CB875C /* UIImage+animatedGIF.m in Sources */,
 				2513B34F273A09E800445F08 /* ButtonOnCellDelegate.swift in Sources */,
+				254167CC2758E41900460ECB /* UIButton+Extension.swift in Sources */,
 				2511FF922734E20800C2C7BE /* TracksTableViewController.swift in Sources */,
+				257C60F72767D7660023CE8A /* Extensions.swift in Sources */,
 				25CF58362735690F00CEE0A5 /* AudioPlayerViewController.swift in Sources */,
+				254167C82758E15200460ECB /* UIView+Extension.swift in Sources */,
 				25DA316D2730F0F800FA3545 /* Model.swift in Sources */,
+				257C60FC27685F4E0023CE8A /* DownloadManager.swift in Sources */,
 				252C1F422729EACD00F653C8 /* ViewController.swift in Sources */,
 				2581DF18272C267B004D7451 /* WelcomeViewController.swift in Sources */,
 				25DA316F2730FC0700FA3545 /* RegisterViewController.swift in Sources */,
@@ -346,6 +369,7 @@
 				254167BD2756D49100460ECB /* APIManager.swift in Sources */,
 				252C1F402729EACD00F653C8 /* SceneDelegate.swift in Sources */,
 				2513B34D2739C04E00445F08 /* TrackTableViewCell.swift in Sources */,
+				254167C42758C89300460ECB /* PlayListDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

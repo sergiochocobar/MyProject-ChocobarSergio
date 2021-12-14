@@ -104,6 +104,22 @@ class AudioPlayerViewController: UIViewController {
             imgContainer.frame=CGRect(x: 0, y: 350, width: self.view.frame.width, height: 150)
             self.view.addSubview(imgContainer)
         }
+        
+        
+        //Boton Menu
+        let menu = UIButton(type: .system)
+        menu.setTitle("Menu", for: .normal)
+        menu.autoresizingMask = .flexibleWidth
+        menu.translatesAutoresizingMaskIntoConstraints=true
+        menu.frame=CGRect(x: 105, y: 100, width: 100, height: 40)
+        self.view.addSubview(menu)
+        /**--------**/
+        menu.addAction(UIAction(title: "", handler: { (_) in
+            print("Default Action")
+        }), for: .touchUpInside)
+        
+        menu.menu = addMenuItems()
+        
     }
 
     @objc func playAction() {
@@ -152,5 +168,23 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         song?.stop()
+    }
+    
+    
+    
+    func addMenuItems() -> UIMenu{
+        let menuItems = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+                print("Copy")
+            }),
+            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+                print("Copy")
+            }),
+            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+                print("Copy")
+            })
+        ])
+        
+        return menuItems
     }
 }

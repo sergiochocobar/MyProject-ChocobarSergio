@@ -24,6 +24,25 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate{
         //1- Le indicamos al TABLE VIEW de que tipo van a ser las celdas que va a mostrar
         self.tableView.register(TrackTableViewCell.self, forCellReuseIdentifier: "trackCell")
         self.tableView.rowHeight = 80;
+        
+        //DownloadManager
+        DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
+        
+        //NotificationCenter
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTable(_:)),
+                                               name: NSNotification.Name("updateTable"),
+                                               object: nil)
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
+            print("Timer fired!")
+            NotificationCenter.default.post(name: NSNotification.Name("updateTable"), object: nil)
+        }
+    }
+    
+    @objc func updateTable(_ notification: Notification) {
+        misTracks.append(Track(title: "Nueva cancion", artist: "Nuevo artista", album: "Nuevo album", song_id: "0", genre: "Genero", duration: 123))
+        tableView.reloadData()
     }
     
     

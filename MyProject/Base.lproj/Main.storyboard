@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fpJ-q6-Qdy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iua-3d-9p0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,13 +20,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3n-42-BrE" userLabel="Log in">
                                 <rect key="frame" x="161.5" y="84" width="91" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" name="TextColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email or username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVq-fS-gNj">
                                 <rect key="frame" x="45" y="162" width="223" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="TextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONh-kh-Fz5">
@@ -48,22 +46,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AY-iW-4G5">
-                                <rect key="frame" x="165.5" y="315" width="83" height="31"/>
-                                <color key="tintColor" name="AccentColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue"/>
-                                <connections>
-                                    <action selector="continue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xpA-IP-klI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwE-MK-kDJ">
-                                <rect key="frame" x="169.5" y="374" width="75" height="31"/>
+                                <rect key="frame" x="105" y="388" width="204" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="462-Tu-HAh"/>
+                                    <constraint firstAttribute="width" constant="204" id="l2X-hg-Onh"/>
+                                </constraints>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
                                     <segue destination="4kg-av-6dq" kind="show" id="JCR-Pw-bHI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AY-iW-4G5">
+                                <rect key="frame" x="105" y="315" width="204" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="mhf-m6-heM"/>
+                                    <constraint firstAttribute="width" constant="204" id="zDe-VB-C36"/>
+                                </constraints>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue"/>
+                                <connections>
+                                    <action selector="continue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xpA-IP-klI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -91,7 +97,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="oqk-cn-gw3"/>
                     <connections>
+                        <outlet property="login" destination="8AY-iW-4G5" id="FZX-Dt-2vg"/>
                         <outlet property="passwordField" destination="55h-UH-LAm" id="PMJ-17-xUR"/>
+                        <outlet property="register" destination="fwE-MK-kDJ" id="qU6-IR-4YJ"/>
                         <outlet property="userNameField" destination="ONh-kh-Fz5" id="aZh-uL-cVc"/>
                     </connections>
                 </viewController>
@@ -202,40 +210,6 @@
             </objects>
             <point key="canvasLocation" x="939" y="838"/>
         </scene>
-        <!--Collection View Controller-->
-        <scene sceneID="0An-ax-AQP">
-            <objects>
-                <collectionViewController id="3Cq-QN-0Ox" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NJ1-Z3-aZ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wIf-e2-ekw">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="71V-Bq-EVf">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O7j-hP-gcg">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="3Cq-QN-0Ox" id="Qih-hQ-dRG"/>
-                            <outlet property="delegate" destination="3Cq-QN-0Ox" id="pBC-M6-Ztn"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pdz-2H-1Fj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1733" y="2051"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ocy-OP-9HU">
             <objects>
@@ -248,6 +222,7 @@
                     <connections>
                         <segue destination="kkf-NN-SQz" kind="relationship" relationship="viewControllers" id="vea-zZ-Sca"/>
                         <segue destination="EMc-T2-a3V" kind="relationship" relationship="viewControllers" id="6uf-SM-Zeo"/>
+                        <segue destination="hTb-2U-cAH" kind="relationship" relationship="viewControllers" id="Kx7-FE-yHl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAW-mo-hUG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,7 +277,7 @@
                             <constraint firstItem="ywP-gB-YZt" firstAttribute="centerX" secondItem="yFa-fr-bS9" secondAttribute="centerX" id="vVJ-Ng-WCa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="JOx-y9-QNQ"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="JOx-y9-QNQ"/>
                     <navigationItem key="navigationItem" id="fX5-MG-IJx"/>
                     <connections>
                         <outlet property="ImagenLogo" destination="ywP-gB-YZt" id="hvi-tF-PCo"/>
@@ -336,11 +311,27 @@
                             <outlet property="delegate" destination="EMc-T2-a3V" id="6Qv-SQ-sSC"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Songs" image="music.note" catalog="system" selectedImage="music.note" id="LXS-aD-Ksa"/>
+                    <tabBarItem key="tabBarItem" title="Songs" image="music.note" catalog="system" id="LXS-aD-Ksa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GIH-Wr-pUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2967" y="853"/>
+        </scene>
+        <!--Playlist-->
+        <scene sceneID="IMK-B1-ItN">
+            <objects>
+                <viewController id="hTb-2U-cAH" customClass="PlayListDetailController" customModule="MyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IpH-g1-JPq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="04b-XM-saj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Playlist" image="music.note.list" catalog="system" id="SPr-bc-Dca"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTQ-8L-h3O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2950" y="1583"/>
         </scene>
         <!--Audio Player View Controller-->
         <scene sceneID="KND-Va-FFI">
@@ -379,6 +370,7 @@
         <image name="ImagenLogo" width="248" height="236"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="music.note" catalog="system" width="97" height="128"/>
+        <image name="music.note.list" catalog="system" width="128" height="115"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
