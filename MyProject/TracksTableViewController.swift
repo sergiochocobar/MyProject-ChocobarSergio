@@ -9,24 +9,33 @@ import UIKit
 
 class TracksTableViewController: UITableViewController, ButtonOnCellDelegate{
     
+//    func buttonTouchedOnCell(aCell: UITableViewCell) {
+//        view.endEditing(true)
+//        self.view.endEditing(true)
+//        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SongViewController") as? AudioPlayerViewController
+//        self.present(vc!, animated: true)
+//    }
+    
     func buttonTouchedOnCell(aCell: UITableViewCell) {
-        view.endEditing(true)
-        self.view.endEditing(true)
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SongViewController") as? AudioPlayerViewController
-        self.present(vc!, animated: true)
+        let apvc = AudioPlayerViewController()
+        if let index = tableView.indexPath(for: aCell) {
+            tableView.selectRow(at: index, animated: false, scrollPosition: .none)
+            let elTrack = misTracks[index.row]
+//            apvc.track = elTrack
+//            apvc.delegate = self
+        }
+        self.present(apvc, animated: true, completion: nil)
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //cambiar fondo de la tabla y letras blancas
-//        self.tableView.backgroundColor = .black //esto es lo mismo que poner UIColor.black
         //1- Le indicamos al TABLE VIEW de que tipo van a ser las celdas que va a mostrar
         self.tableView.register(TrackTableViewCell.self, forCellReuseIdentifier: "trackCell")
         self.tableView.rowHeight = 80;
         
         //DownloadManager
-        DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
+        //DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
         
         //NotificationCenter
         NotificationCenter.default.addObserver(self,
@@ -65,15 +74,11 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate{
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        // return 5
         return misTracks.count
     }
 

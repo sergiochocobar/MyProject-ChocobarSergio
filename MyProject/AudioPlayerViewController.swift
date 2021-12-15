@@ -16,8 +16,11 @@ class AudioPlayerViewController: UIViewController {
     var slider = UISlider() //Variable global del slider
     var timer = Timer()
     
+//    var songsLove = [Int]()
+    
     
     override func viewDidLoad() {
+        view.backgroundColor = .white
         /*---------------------------------*/
         guard let url = Bundle.main.url(forResource: "cancion-ukelele", withExtension: ".mp3") else { return }
         
@@ -174,13 +177,17 @@ class AudioPlayerViewController: UIViewController {
     
     func addMenuItems() -> UIMenu{
         let menuItems = UIMenu(title: "", options: .displayInline, children: [
-            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+            UIAction(title: "Love", image: UIImage(systemName: "heart"), handler: { (_) in
+//                print("Copy")
+//                self?.favorites.append(indexPath.row)
+            }),
+            UIAction(title: "Download", image: UIImage(systemName: "arrow.down.circle"), handler: { (_) in
                 print("Copy")
             }),
-            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+            UIAction(title: "Add to Playlist", image: UIImage(systemName: "arrow.up.forward"), handler: { (_) in
                 print("Copy")
             }),
-            UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc"), handler: { (_) in
+            UIAction(title: "Remove", image: UIImage(systemName: "trash"), handler: { (_) in
                 print("Copy")
             })
         ])
