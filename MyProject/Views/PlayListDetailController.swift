@@ -8,9 +8,7 @@
 import UIKit
 
 class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableViewDataSource, UITableViewDelegate{
-    
-    var tracks = Set<Track>()
-    var tracksArray = [Track]()
+
     let tv = UITableView()
     let textField = UITextField()
     let button1 = UIButton(type: .custom)
@@ -36,6 +34,8 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.setGradientBackground()
+        
         self.view.addSubview(textField)
         textField.placeholder = "Playlist..."
         textField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5) 
@@ -47,7 +47,7 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
         
         self.view.addSubview(button1)
         button1.setImage(UIImage(systemName: "plus.rectangle.fill.on.rectangle.fill"), for: .normal)
-        button1.translatesAutoresizingMaskIntoConstraints=false
+        button1.translatesAutoresizingMaskIntoConstraints = false
         button1.topAnchor.constraint(equalTo:self.view.topAnchor, constant: 50).isActive = true
         button1.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 10).isActive = true
         button1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
@@ -67,6 +67,11 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
         tv.dataSource = self
         tv.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tv.reloadData()
+    }
 
     
     @objc func showView() {
@@ -74,6 +79,26 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
        trv.delegate = self
        self.view.addSubview(trv)
    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func tableview(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
+        return .delete
+    }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete{
+            tableView.beginUpdates()
+            
+            //esto esta bien?
+            let track = tracksArray.remove(at: indexPath.row)
+            tracks.remove(track)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
 
 }

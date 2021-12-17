@@ -7,19 +7,19 @@ class RegisterViewController: UIViewController {
     @IBOutlet var textsLabel: [UILabel]!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var `continue`: UIButton!
+    @IBOutlet weak var dismiss: UIButton!
     let model: Registered = Registered()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.setGradientBackground()
+        self.continue.buttonPink()
+        self.dismiss.tintColor = .lightGray
         //Recorremos la coleccion para aplicarle color
         for text in textsLabel{
-            text.textColor = UIColor(named: "TextColor")
+            text.textColor = .white
         }
-        
-        self.view.backgroundColor = UIColor(named: "BackgroundColor")
-        
-
     }
     
     @IBAction func `continue`(_ sender: Any) {
@@ -28,16 +28,33 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        if(userNameField.isEmpty){
-           print("Debe completar el campo del Email")
-        }else if !checkUser(emailInput: userNameField){
-            print("Ingrese un Email válido")
-        }else if(model.user1.user == userNameField){
-            print("El usuario ya existe")
+        
+        if(!userNameField.isEmpty){
+            self.email.textFieldRemoveRedBorderAnimation()
+            if (userNameField.isValidEmail()) {
+                if(userNameField == model.user1.user){
+                    showSimpleAlert("El usuario ya existe")
+                    self.email.textFieldErrorShakeAnimation()
+                }else{
+                    self.email.textFieldRemoveRedBorderAnimation()
+                    //Rest Service Manager
+                    RestServiceManager.shared.getToServer(responseType: [Track].self, method: .get, endpoint: "songs") { status, data in
+                       misTracks = [Track]()
+                       if let _data = data {
+                           misTracks = _data
+                       }
+                    }
+                    goToMainViewController()
+                }
+            }else{
+                showSimpleAlert("Escribe un email Válido")
+                self.email.textFieldErrorShakeAnimation()
+            }
         }else{
-            print("Usuario Autenticado")
-            goToMainViewController()
+            showSimpleAlert("Completa correctamente el campo del Email")
+            self.email.textFieldErrorShakeAnimation()
         }
+
     }
      
     @IBAction func dismissRegister(_ sender: Any) {
@@ -49,7 +66,6 @@ class RegisterViewController: UIViewController {
     var numbercolors: Int = 5
     
     @IBAction func facebookLogin(_ sender: Any) {
-//        facebookButton.tintColor = UIColor(named: "FacebookButtonClick")
         let color: String = "Color"
         let colorname: String = color+"\(counter)"
         counter += 1
@@ -61,10 +77,8 @@ class RegisterViewController: UIViewController {
     }
     
     func goToMainViewController() {
-      let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController
-      vc?.modalPresentationStyle = .fullScreen
-        
-        
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as? UITabBarController
+        vc?.modalPresentationStyle = .fullScreen
         guard let vc = vc else{ return }
         present(vc, animated: true)
     }
